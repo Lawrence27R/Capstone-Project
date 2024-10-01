@@ -1,14 +1,11 @@
 package com.aurionpro.capstone.service;
 
-<<<<<<< HEAD
-import org.springframework.stereotype.Service;
 
-@Service
-public class ClientServiceImpl {
-=======
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
->>>>>>> branch 'main' of https://github.com/Lawrence27R/Capstone-Project.git
+import org.springframework.stereotype.Service;
+
+//github.com/Lawrence27R/Capstone-Project.git
 
 import com.aurionpro.capstone.dto.ClientDto;
 import com.aurionpro.capstone.repo.ClientRepository;
