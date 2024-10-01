@@ -1,11 +1,6 @@
 package com.aurionpro.capstone.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +8,8 @@ import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
@@ -54,4 +51,13 @@ public class Client {
 
     @NotBlank(message = "Password is mandatory")
     private String password;
+
+    // Many clients belong to one bank
+    @ManyToOne
+    @JoinColumn(name = "bankId", nullable = false)
+    private Bank bank;
+
+    // One client has many beneficiaries
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Beneficiary> beneficiaries;
 }

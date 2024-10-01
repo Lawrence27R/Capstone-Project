@@ -1,18 +1,14 @@
 package com.aurionpro.capstone.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "banks")
@@ -31,9 +27,12 @@ public class Bank {
     @Column(name = "bankName")
     private String bankName;
     
-    @NotNull(message = "IFSC number is mandatory")
-//    @Pattern(regexp = "\\d{11}", message = "IFSC number must be exactly 11 digits.")
+    @NotBlank(message = "IFSC number is mandatory")
+    @Pattern(regexp = "^[A-Z]{4}\\d{7}$", message = "IFSC number must start with 4 alphabets followed by 7 digits.")
     @Column(name = "ifscNo")
     private String ifscNo;
 
+    // One bank has many clients
+    @OneToMany(mappedBy = "bank", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Client> clients;
 }
