@@ -1,11 +1,6 @@
 package com.aurionpro.capstone.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -35,4 +30,9 @@ public class Document {
     @Size(min = 2, max = 100, message = "Document name must be between 2 and 100 characters.")
     @Column(name = "documentName")
     private String documentName;
+
+    // Many documents belong to one client
+    @ManyToOne
+    @JoinColumn(name = "registrationNumber", nullable = false)
+    private Client client;
 }

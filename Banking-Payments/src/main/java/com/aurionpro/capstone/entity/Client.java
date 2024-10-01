@@ -29,7 +29,7 @@ public class Client {
 
     @Column(name = "status")
     @NotNull(message = "Status is mandatory")
-    @Enumerated(EnumType.STRING)  
+    @Enumerated(EnumType.STRING)
     private ClientStatus status;
 
     @Email(message = "Email should be valid")
@@ -65,4 +65,8 @@ public class Client {
     @ManyToOne
     @JoinColumn(name = "superAdminId", nullable = false)
     private SuperAdmin superAdmin;
+
+    // One client has many documents
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Document> documents;
 }
