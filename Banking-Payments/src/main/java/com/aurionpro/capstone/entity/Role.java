@@ -7,9 +7,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -31,4 +31,7 @@ public class Role {
     @Column(name = "rolename", nullable = false)
     private Roles rolename;
 
+    @OneToOne(mappedBy = "role")
+    private User user;
 }
+
