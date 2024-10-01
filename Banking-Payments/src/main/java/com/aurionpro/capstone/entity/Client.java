@@ -60,4 +60,9 @@ public class Client {
     // One client has many beneficiaries
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Beneficiary> beneficiaries;
+
+    // Many clients belong to one SuperAdmin
+    @ManyToOne
+    @JoinColumn(name = "superAdminId", nullable = false)
+    private SuperAdmin superAdmin;
 }
