@@ -2,6 +2,8 @@ package com.aurionpro.capstone.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -20,8 +22,9 @@ import lombok.RequiredArgsConstructor;
 public class Employee {
 
     @Id
-    @Column(name = "id")
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-generate employeeid
+    @Column(name = "employeeid")
+    private int employeeid;
 
     @Column(name = "firstname")
     @NotBlank(message = "First Name is mandatory")
