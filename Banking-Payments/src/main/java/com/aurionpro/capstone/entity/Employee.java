@@ -1,11 +1,6 @@
 package com.aurionpro.capstone.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -22,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-generate employeeid
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-generate employeeId
     @Column(name = "employeeid")
     private int employeeid;
 
@@ -40,9 +35,14 @@ public class Employee {
     private Double salary;
 
     @NotNull(message = "Account number is mandatory")
-    private Long acountnumber;
+    private Long accountnumber;
 
     @Email(message = "Email should be valid")
     @NotBlank(message = "Email is mandatory")
     private String email;
+
+    // Many employees belong to one client
+    @ManyToOne
+    @JoinColumn(name = "client_registrationNumber", nullable = false) // Foreign key column for Client
+    private Client client;  // Added relationship to client
 }

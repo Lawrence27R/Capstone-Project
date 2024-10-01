@@ -66,7 +66,7 @@ public class Client {
     @JoinColumn(name = "superAdminId", nullable = false)
     private SuperAdmin superAdmin;
 
-    // One client has many documents
+    // One client has many employees
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Document> documents;
+    private List<Employee> employees; // Added relationship to employees
 }
