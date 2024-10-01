@@ -32,7 +32,7 @@ public class Client {
 
     @Column(name = "status")
     @NotNull(message = "Status is mandatory")
-    @Enumerated(EnumType.STRING)  // Assuming ClientStatus is an enum
+    @Enumerated(EnumType.STRING)  
     private ClientStatus status;
 
     @Email(message = "Email should be valid")
